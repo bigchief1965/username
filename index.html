@@ -11,49 +11,49 @@
   	<script src="ogv.js"></script>
   	<script type="text/javascript">
 
-		const play = document.getElementById("play");
-		const pause = document.getElementById("pause");
-
-		var player = new OGVPlayer({
-	        debug: true,
-	        debugFilter: /demuxer/
-        });
-
+		var player;
 		var container = document.getElementById("con");
-		container.appendChild(player);
 
-		player.src = 'brown6ogg4.ogg';
-		player.addEventListener('ended', function() {
-    	// ta-da!
-			var player = new OGVPlayer({
+		function createPlayer() {
+			player = new OGVPlayer({
 	        	debug: true,
 	        	debugFilter: /demuxer/
         	});
-			player.play();
-			var container = document.getElementById("con");
+			player.src = 'brown6ogg4.ogg';
+		}
+
+		
 		container.appendChild(player);
 
-		player.src = 'brown6ogg4.ogg';
+		
+		player.addEventListener('ended', function() {
+
   		});
-
-		play.addEventListener( 'click', function() {
-			play.disabled = true;
-			player.play();
-		});
-
-		pause.addEventListener( 'click', function() {
-			pause.disabled = true;
-			player.pause();
-		});
 
 		player.addEventListener('playing', function() {
 			play.disabled = true;
 			pause.disabled = false;
 		});
-
 		player.addEventListener('pause', function() {
 			play.disabled = false;
 			pause.disabled = true;
+		});
+
+//buttons
+		const play = document.getElementById("play");
+		const pause = document.getElementById("pause");
+		play.addEventListener( 'click', function() {
+			play.disabled = true;
+			createPlayer();
+			player.play();
+			player.addEventListener('ended', function() {
+				createPlayer();
+				player.play();
+			});
+		});
+		pause.addEventListener( 'click', function() {
+			pause.disabled = true;
+			player.pause();
 		});
 
   </script>
