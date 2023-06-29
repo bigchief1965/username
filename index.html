@@ -22,14 +22,6 @@
 			player.src = 'brown6ogg4.ogg';
 		}
 
-		
-		container.appendChild(player);
-
-		
-		player.addEventListener('ended', function() {
-
-  		});
-
 		player.addEventListener('playing', function() {
 			play.disabled = true;
 			pause.disabled = false;
@@ -45,9 +37,11 @@
 		play.addEventListener( 'click', function() {
 			play.disabled = true;
 			createPlayer();
+			container.appendChild(player);
 			player.play();
 			player.addEventListener('ended', function() {
 				createPlayer();
+				container.appendChild(player);
 				player.play();
 			});
 		});
