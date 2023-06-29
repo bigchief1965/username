@@ -23,13 +23,11 @@
 		container.appendChild(player);
 
 		player.src = 'brown6ogg4.ogg';
-		player.addEventListener('ended', function() {
-			player.play();
-  		});
 
 		play.addEventListener( 'click', function() {
 			play.disabled = true;
 			player.play();
+			setTimeout(function() {player.play()}, 13000)
 		});
 
 		pause.addEventListener( 'click', function() {
