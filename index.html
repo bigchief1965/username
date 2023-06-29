@@ -15,19 +15,30 @@
 		const pause = document.getElementById("pause");
 
 		var player = new OGVPlayer({
-	        	debug: true,
-	        	debugFilter: /demuxer/
-        	});
+	        debug: true,
+	        debugFilter: /demuxer/
+        });
 
 		var container = document.getElementById("con");
 		container.appendChild(player);
 
 		player.src = 'brown6ogg4.ogg';
+		player.addEventListener('ended', function() {
+    	// ta-da!
+			var player = new OGVPlayer({
+	        	debug: true,
+	        	debugFilter: /demuxer/
+        	});
+			player.play();
+			var container = document.getElementById("con");
+		container.appendChild(player);
+
+		player.src = 'brown6ogg4.ogg';
+  		});
 
 		play.addEventListener( 'click', function() {
 			play.disabled = true;
 			player.play();
-			setTimeout(function() {player.play()}, 13000)
 		});
 
 		pause.addEventListener( 'click', function() {
