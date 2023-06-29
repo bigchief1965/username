@@ -22,6 +22,9 @@
 		var container = document.getElementById("con");
 		container.appendChild(player);
 
+		player.src = 'brown6ogg4.ogg';
+		player.loop = true;
+
 		play.addEventListener( 'click', function() {
 			play.disabled = true;
 			player.play();
@@ -31,8 +34,6 @@
 			pause.disabled = true;
 			player.pause();
 		});
-
-		player.src = 'brown6ogg4.ogg';
 
 		player.addEventListener('playing', function() {
 			play.disabled = true;
