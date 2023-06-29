@@ -15,16 +15,15 @@
 		const pause = document.getElementById("pause");
 
 		var player = new OGVPlayer({
-	        debug: true,
-	        debugFilter: /demuxer/
-        });
+	        	debug: true,
+	        	debugFilter: /demuxer/
+        	});
 
 		var container = document.getElementById("con");
 		container.appendChild(player);
 
 		player.src = 'brown6ogg4.ogg';
 		player.addEventListener('ended', function() {
-    	// ta-da!
 			player.play();
   		});
 
