@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>oggg safariiii</title>
+</head>
+<body>
+	<button id="play">Play</button>
+  	<button id="pause" disabled>Pause</button>
+	<div id="con"></div>
+
+  	<script src="ogv.js"></script>
+  	<script type="text/javascript">
+
+		const play = document.getElementById("play");
+		const pause = document.getElementById("pause");
+
+		var player = new OGVPlayer({
+	        debug: true,
+	        debugFilter: /demuxer/
+        });
+
+		var container = document.getElementById("con");
+		container.appendChild(player);
+
+		play.addEventListener( 'click', function() {
+			play.disabled = true;
+			player.play();
+		});
+
+		pause.addEventListener( 'click', function() {
+			pause.disabled = true;
+			player.pause();
+		});
+
+		player.src = 'brown6ogg4.ogg';
+
+		player.addEventListener('playing', function() {
+			play.disabled = true;
+			pause.disabled = false;
+		});
+
+		player.addEventListener('pause', function() {
+			play.disabled = false;
+			pause.disabled = true;
+		});
+
+  </script>
+</body>
+</html>
