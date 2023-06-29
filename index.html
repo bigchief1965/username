@@ -5,50 +5,30 @@
 </head>
 <body>
 	<button id="play">Play</button>
-  	<button id="pause" disabled>Pause</button>
 	<div id="con"></div>
 
   	<script src="ogv.js"></script>
   	<script type="text/javascript">
+		const container = document.getElementById("con");
 
-		var player;
-		var container = document.getElementById("con");
+		var player = new OGVPlayer({
+			debug: true,
+			debugFilter: /demuxer/
+  		});
+		player.src = 'brown6ogg4.ogg';
+		container.appendChild(player);
 
-		function createPlayer() {
-			player = new OGVPlayer({
-	        	debug: true,
-	        	debugFilter: /demuxer/
-        	});
-			player.src = 'brown6ogg4.ogg';
-		}
+		var player2 = new OGVPlayer({
+			debug: true,
+			debugFilter: /demuxer/
+  		});
+		player2.src = 'brown6ogg4.ogg';
+		container.appendChild(player2);
 
-		player.addEventListener('playing', function() {
-			play.disabled = true;
-			pause.disabled = false;
-		});
-		player.addEventListener('pause', function() {
-			play.disabled = false;
-			pause.disabled = true;
-		});
-
-//buttons
-		const play = document.getElementById("play");
-		const pause = document.getElementById("pause");
-		play.addEventListener( 'click', function() {
-			play.disabled = true;
-			createPlayer();
-			container.appendChild(player);
+		function playIt() {
 			player.play();
-			player.addEventListener('ended', function() {
-				createPlayer();
-				player.play();
-			});
-		});
-		pause.addEventListener( 'click', function() {
-			pause.disabled = true;
-			player.pause();
-		});
-
-  </script>
+			setTimeout(function() {player2.play()}, 13000);
+		}
+  	</script>
 </body>
 </html>
